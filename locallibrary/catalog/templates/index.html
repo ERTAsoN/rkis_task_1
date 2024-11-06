@@ -3,14 +3,18 @@
 {% block content %}
 <h1 class="font-weight-bold">Local Library Home</h1>
 
-  <h4>Добро пожаловать в <em>LocalLibrary</em>!</h4>
+<h4>Добро пожаловать в <em>LocalLibrary</em>!</h4>
 
-  <h5 class="mt-4">В библиотеке есть следующее количество записей:</h5>
-  <ul>
-    <li><strong>Книги:</strong> {{ num_books }}</li>
-    <li><strong>Экземпляры:</strong> {{ num_instances }}</li>
-    <li><strong>Доступные экземпляры:</strong> {{ num_instances_available }}</li>
-    <li><strong>Авторы:</strong> {{ num_authors }}</li>
-  </ul>
+<h5 class="mt-4">В библиотеке есть следующее количество записей:</h5>
+<ul>
+  <li><strong>Книги:</strong> {{ num_books }}</li>
+  <li><strong>Экземпляры:</strong> {{ num_instances }}</li>
+  <li><strong>Доступные экземпляры:</strong> {{ num_instances_available }}</li>
+  <li><strong>Авторы:</strong> {{ num_authors }}</li>
+</ul>
+
+<p>
+  Вы посетили эту страницу {{ num_visits }}{% if num_visits == 1 %} раз{% else %} раза{% endif %}.
+</p>
 
 {% endblock %}

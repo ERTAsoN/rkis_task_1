@@ -77,7 +77,7 @@ class BookInstance(models.Model):
         """
         String for representing the Model object
         """
-        return '%s (%s)' % (self.id,self.book.title)
+        return f'{self.id} ({self.book.title})'
 
     def book_title(self):
         return str(self.book.title)
