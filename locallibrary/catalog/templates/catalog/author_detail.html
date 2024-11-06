@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ author }} ({{ author.life_period }})</h1>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h3>Книги</h3>
+
+    {% for book in author.book_set.all %}
+    <li class="h5">
+      <a href="{{ book.get_absolute_url }}">{{ book.title }} ({{book.display_genre}})</a>
+    </li>
+    {% endfor %}
+  </div>
+{% endblock %}

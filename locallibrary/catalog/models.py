@@ -61,10 +61,10 @@ class BookInstance(models.Model):
     due_back = models.DateField(null=True, blank=True)
 
     LOAN_STATUS = (
-        ('m', 'Maintenance'),
-        ('o', 'On loan'),
-        ('a', 'Available'),
-        ('r', 'Reserved'),
+        ('m', 'Обслуживание'),
+        ('o', 'Арендован'),
+        ('a', 'Доступен'),
+        ('r', 'Забронирован'),
     )
 
     status = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='m', help_text='Book availability')
@@ -103,4 +103,7 @@ class Author(models.Model):
         """
         String for representing the Model object.
         """
-        return '%s, %s' % (self.last_name, self.first_name)
+        return f'{self.last_name} {self.first_name}'
+
+    def life_period(self):
+        return '.'.join((str(self.date_of_birth)).split('-')) + (' - ' + '.'.join((str(self.date_of_death)).split('-')) if self.date_of_death else '')

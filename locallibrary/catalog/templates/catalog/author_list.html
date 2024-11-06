@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Список авторов</h1>
+
+    {% if author_list %}
+    <ul>
+
+      {% for author in author_list %}
+      <li class="h5">
+        <a href="{{ author.get_absolute_url }}">{{ author.last_name }} {{ author.first_name }}</a> ({{ author.life_period }})
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>В библиотеке нет записей об авторах.</p>
+    {% endif %}
+{% endblock %}
