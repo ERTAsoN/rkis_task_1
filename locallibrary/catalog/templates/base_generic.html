@@ -22,6 +22,18 @@
                   <li><a href="{% url 'index' %}">Главная</a></li>
                   <li><a href="{% url 'books' %}">Все книги</a></li>
                   <li><a href="{% url 'authors' %}">Все авторы</a></li>
+                  {% if user.is_authenticated %}
+                    <li class="mt-4">Аккаунт: <span class="text-secondary">{{ user.get_username }}</span></li>
+                    <li><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>
+                    <li><a href="{% url 'my-borrowed' %}">Мои книги</a></li>
+                  {% else %}
+                    <li class="mt-4"><a href="{% url 'login'%}?next={{request.path}}">Войти</a></li>
+                  {% endif %}
+                  {% if perms.catalog.can_mark_returned %}
+                    <hr>
+                    <li>Персонал</li>
+                    <li><a href="{% url 'borrowed' %}">Арендованные книги</a></li>
+                  {% endif %}
               </ul>
               {% endblock %}
           </div>
