@@ -3,7 +3,8 @@
 {% block content %}
   <h1>Удалить автора</h1>
 
-  <p class="h5 text-danger">Вы уверены, что хотите удалить автора:<br> {{ author }}?</p>
+  <p class="h5 text-danger">Вы уверены, что хотите удалить автора:</p>
+    <p class="mt-2 mb-2 h3 text-danger">{{ author }}?</p>
 
   <form action="" method="POST">
     {% csrf_token %}

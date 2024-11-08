@@ -2,21 +2,26 @@
 
 {% block content %}
   <h1>Название: {{ book.title }}</h1>
+    <span class="h5"><a href="{% url 'book_update' book.pk %}">Редактировать</a> <a class="text-danger" href="{% url 'book_delete' book.pk %}">Удалить</a></span>
 
-  <p><strong>Автор:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a>
+  <p class="mt-4"><strong>Автор:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a>
   <p><strong>Описание:</strong> {{ book.summary }}</p>
   <p><strong>Жанр:</strong> {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
 
   <div style="margin-left:20px;margin-top:20px">
     <h4>Экземпляры</h4>
-
-    {% for copy in book.bookinstance_set.all %}
-    <hr>
-    <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
-    {% if copy.status != 'a' and copy.status != 'm' %}<p><strong>Дата возврата:</strong> {{copy.due_back_format}}</p>{% endif %}
-    <p><strong>Подпись:</strong> {{copy.imprint}}</p>
-    <p class="text-muted"><strong>ID:</strong> {{copy.id}}</p>
-    {% endfor %}
+    
+    {% if book.bookinstance_set.all %}
+        {% for copy in book.bookinstance_set.all %}
+        <hr>
+        <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
+        {% if copy.status != 'a' and copy.status != 'm' %}<p><strong>Дата возврата:</strong> {{copy.due_back_format}}</p>{% endif %}
+        <p><strong>Подпись:</strong> {{copy.imprint}}</p>
+        <p class="text-muted"><strong>ID:</strong> {{copy.id}}</p>
+        {% endfor %}
+    {% else %}
+        <p class="h5 mt-3 text-secondary">У этой книги нет экземпляров.</p>
+    {% endif %}
   </div>
 {% endblock %}
