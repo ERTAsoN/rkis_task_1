@@ -116,7 +116,7 @@ class Author(models.Model):
         """
         String for representing the Model object.
         """
-        return f'{self.last_name} {self.first_name}'
+        return f'{self.first_name} {self.last_name}'
 
     def life_period(self):
         return '.'.join((str(self.date_of_birth)).split('-')) + (' - ' + '.'.join((str(self.date_of_death)).split('-')) if self.date_of_death else '')

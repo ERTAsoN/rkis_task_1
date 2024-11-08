@@ -32,7 +32,9 @@
                   {% if perms.catalog.can_mark_returned %}
                     <hr>
                     <li>Персонал</li>
-                    <li><a href="{% url 'borrowed' %}">Арендованные книги</a></li>
+                    <li><a href="{% url 'all-borrowed' %}">Арендованные книги</a></li>
+                    <li><a href="{% url 'author_create' %}">Создать автора</a></li>
+                    <li><a href="{% url 'book_create' %}">Создать книгу</a></li>
                   {% endif %}
               </ul>
               {% endblock %}

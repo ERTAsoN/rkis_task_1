@@ -4,16 +4,20 @@
     <h1>Мои книги</h1>
 
     {% if bookinstance_list %}
-    <ul class="mt-4">
-
+    <table class="mt-4 h5 display-table">
+        <tr class="text-secondary">
+            <td>Название</td>
+            <td>Дата возврата</td>
+        </tr>
       {% for bookinst in bookinstance_list %}
-      <li class="h5">
-        <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a><span class="{% if bookinst.is_overdue %}text-danger{% endif %}"> ({{ bookinst.due_back }}) </span>
-      </li>
+      <tr>
+        <td><a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a></td>
+        <td><span class="{% if bookinst.is_overdue %}text-danger{% endif %}"> {{ bookinst.due_back_format }} </span></td>
+      </tr>
       {% endfor %}
-    </ul>
+    </table>
 
     {% else %}
-      <p>У вас нет арендованных книг.</p>
+      <p class="h5">У вас нет арендованных книг.</p>
     {% endif %}
 {% endblock %}

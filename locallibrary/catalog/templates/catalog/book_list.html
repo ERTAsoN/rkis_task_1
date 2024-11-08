@@ -4,16 +4,20 @@
     <h1>Список книг</h1>
 
     {% if book_list %}
-    <ul class="mt-4">
-
+    <table class="mt-4 h5 display-table">
+        <tr class="text-secondary">
+            <td>Название</td>
+            <td>Автор</td>
+        </tr>
       {% for book in book_list %}
-      <li class="h5">
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
-      </li>
+      <tr>
+        <td><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></td>
+        <td>{{book.author}}</td>
+      </tr>
       {% endfor %}
 
-    </ul>
+    </table>
     {% else %}
-      <p>В библиотеке нет книг.</p>
+      <p class="h5">В библиотеке нет книг.</p>
     {% endif %}
 {% endblock %}

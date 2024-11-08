@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+    <h1>Редактировать: {{bookinst.book.title}}</h1>
+    <p class="mt-4 h5">Заёмщик: {{bookinst.borrower}}</p>
+    <p class="h5 {% if bookinst.is_overdue %} text-danger{% endif %}">Дата возврата: {{bookinst.due_back_format}}</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+        {{ form }}
+        </table>
+        <input type="submit" value="Сохранить" />
+    </form>
+
+{% endblock %}

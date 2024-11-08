@@ -4,13 +4,19 @@
   <h1>{{ author }}</h1>
   <h2>({{ author.life_period }})</h2>
 
+  <span class="h5"><a href="{% url 'author_update' author.pk %}">Редактировать</a> <a class="text-danger" href="{% url 'author_delete' author.pk %}">Удалить</a></span>
+
   <div style="margin-left:20px;margin-top:20px">
     <h3>Книги</h3>
 
-    {% for book in author.book_set.all %}
-    <hr>
-    <a href="{{ book.get_absolute_url }}">{{ book.title }} ({{book.display_genre}})</a>
-    <p class="mt-2 text-secondary ml-3">{{ book.summary }}</p>
-    {% endfor %}
+    {% if author.book_set.all %}
+        {% for book in author.book_set.all %}
+        <hr>
+        <a href="{{ book.get_absolute_url }}">{{ book.title }} ({{book.display_genre}})</a>
+        <p class="mt-2 text-secondary ml-3">{{ book.summary }}</p>
+        {% endfor %}
+    {% else %}
+        <p class="h5 text-secondary mt-3">У этого автора нет книг.</p>
+    {% endif %}
   </div>
 {% endblock %}

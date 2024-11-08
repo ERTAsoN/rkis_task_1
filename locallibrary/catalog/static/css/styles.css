@@ -9,3 +9,7 @@
   margin: 5px;
   margin-left: 15px;
 }
+
+.display-table td {
+  padding: 10px;
+}
