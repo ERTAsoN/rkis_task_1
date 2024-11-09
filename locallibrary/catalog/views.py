@@ -9,7 +9,7 @@ import datetime
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-from .forms import RenewBookForm
+from .forms import RenewBookForm, AuthorForm, BookForm
 
 from .models import Book, Author, BookInstance, Genre
 
@@ -103,13 +103,12 @@ def renew_book_librarian(request, pk):
 class AuthorCreate(PermissionRequiredMixin, CreateView):
     permission_required = 'catalog.can_mark_returned'
     model = Author
-    fields = '__all__'
-    # initial={'date_of_death':'12/10/2016',}
+    form_class = AuthorForm
 
 class AuthorUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'catalog.can_mark_returned'
     model = Author
-    fields = ['first_name','last_name','date_of_birth','date_of_death']
+    form_class = AuthorForm
 
 class AuthorDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'catalog.can_mark_returned'
@@ -119,12 +118,12 @@ class AuthorDelete(PermissionRequiredMixin, DeleteView):
 class BookCreate(PermissionRequiredMixin, CreateView):
     permission_required = 'catalog.can_mark_returned'
     model = Book
-    fields = '__all__'
+    form_class = BookForm
 
 class BookUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'catalog.can_mark_returned'
     model = Book
-    fields = '__all__'
+    form_class = BookForm
 
 class BookDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'catalog.can_mark_returned'
